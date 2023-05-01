@@ -22,7 +22,7 @@ OpenWRT compiler is required.
     ```bash
     sudo apt install libncurses-dev zlib1g-dev gawk subversion python build-essential ccache
     ```
-9. Comment OPENWRT_SDK/scripts/feeds
+9. Comment `OPENWRT_SDK/scripts/feeds`
 
     ```bash
     # comment the line 25, like this below
@@ -36,7 +36,7 @@ OpenWRT compiler is required.
     ```
 
 11. It will take a long time to build  
-12. You can find compiled ipk files in SDK/bin/  
+12. You can find compiled ipk files in `SDK/bin/`  
 
 ## Install the Compiled Shared Library to Target Device
 
@@ -64,7 +64,7 @@ OpenWRT compiler is required.
     ```
 
 ## Potential Errors and Fix
-`usr/lib/libc.so: undefined reference to `_dl_app_init_array’`
+`usr/lib/libc.so: undefined reference to '_dl_app_init_array'`
 
     ```bash
     # Edit Makefile:
