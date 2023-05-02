@@ -16,13 +16,13 @@ OpenWRT compiler is required.
 4. Extract sshpass and put it into SDK/package  
 5. Rename it to `src`, now you have `SDK/package/sshpass/src`
 6. Clone this repo
-7. Copy the Makefile from this repo to `SDK/package/sshpass/`
+7. Copy the Makefile from this repo to `SDK/package/sshpass`
 8. Install dependencies by  
 
     ```bash
     sudo apt install libncurses-dev zlib1g-dev gawk subversion python build-essential ccache
     ```
-9. Comment `OPENWRT_SDK/scripts/feeds`
+9. Comment `SDK/scripts/feeds`
 
     ```bash
     # comment the line 25, like this below
@@ -36,7 +36,7 @@ OpenWRT compiler is required.
     ```
 
 11. It will take a long time to build  
-12. You can find compiled ipk files in `SDK/bin/`  
+12. You can find compiled ipk files in `SDK/bin`  
 
 ## Install the Compiled Shared Library to Target Device
 
@@ -63,14 +63,15 @@ OpenWRT compiler is required.
     sshpass -p TARGET_PASSWORD ssh admin@192.168.1.50 "cat /etc/ntp.conf"
     ```
 
-## Potential Errors and Fix
-`usr/lib/libc.so: undefined reference to '_dl_app_init_array'`
+## Potential Error and Fix
 
-    ```bash
-    # Edit Makefile:
-    # from TARGET_LDFLAGS:=-L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib
-    # to   TARGET_LDFLAGS+= -L$(TOOLCHAIN_DIR)/usr/lib -L$(TOOLCHAIN_DIR)/lib -Wl,-rpath=$(TOOLCHAIN_DIR)/lib
-    ```
+```bash
+  # usr/lib/libc.so: undefined reference to '_dl_app_init_array'
+  #
+  # Edit Makefile:
+  # from TARGET_LDFLAGS:=-L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib
+  # to   TARGET_LDFLAGS+= -L$(TOOLCHAIN_DIR)/usr/lib -L$(TOOLCHAIN_DIR)/lib -Wl,-rpath=$(TOOLCHAIN_DIR)/lib
+```
 
 ## Tested Hardware Platform
 
